@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "icy-incitement",
+  "version": "${version}",
+  "name": "Icy Incitement",
+  "description": "",
+  "authors": [
+    "AmyMialee"
+  ],
+  "contact": {},
+  "license": "All-Rights-Reserved",
+  "icon": "assets/icy-incitement/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "amymialee.icyincitement.IcyIncitementClient"
+    ],
+    "main": [
+      "amymialee.icyincitement.IcyIncitement"
+    ]
+  },
+  "mixins": [
+    "icy-incitement.mixins.json"
+  ],
+  "depends": {
+    "fabric": "*"
+  }
+}

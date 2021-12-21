@@ -1,0 +1,31 @@
+{
+    "display": {
+        "title": {
+            "text": "Icy Incitement",
+            "color": "aqua",
+            "bold": false
+        },
+        "description": {
+            "text": "Thanks for installing Icy Incitement!",
+            "color": "white"
+        },
+        "icon": {
+            "item": "minecraft:snowball"
+        },
+        "frame": "challenge",
+        "show_toast": false,
+        "announce_to_chat": false,
+        "hidden": false,
+        "background": "minecraft:textures/block/snow.png"
+    },
+    "criteria": {
+        "Free": {
+            "trigger": "minecraft:tick"
+        }
+    },
+    "rewards": {
+        "recipes": [
+            "icyincitement:empty_sprinkler"
+        ]
+    }
+}
