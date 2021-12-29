@@ -9,11 +9,15 @@ This mod was made for MMD WinterJam 2021.
 <b>Snowball Sprinkler</b><br>
 The main feature of this mod is the Snowball Sprinkler.<br>
 This tool can be used to fire snowballs at high speed.<br>
-These snowballs will also kick the player back slightly which can be used to jump higher or avoid fall damage.<br>
+Firing these snowballs kicks you back slightly from the force.<br>
+This kickback will let you jump higher or avoid fall damage if aimed down<br>
 It can take Snowballs, Snow Blocks and Snow Layers as ammo.<br>
 <img src="https://github.com/AmyMialeeMods/icy-incitement/raw/main/assets/crafting.png"><br><br>
-The Snowball Sprinkler can then be improved by inserting a Snow Golem, which can be done by right-clicking on one.<br>
-This upgraded form will rapidly replenish its snowball supply allowing you to make much larger jumps and keep crowds of mobs at bay.<br>
+<b>Upgraded Sprinkler</b><br>
+The Snowball Sprinkler can then be improved by inserting a Snow Golem.<br>
+You can do this by right-clicking on a Snow Golem with it.<br>
+This upgraded form will rapidly replenish its snowball supply.<br>
+This lets you jump very high or keep back crowds of mobs.<br>
 <img src="https://github.com/AmyMialeeMods/icy-incitement/raw/main/assets/upgrading.png"><br><br>
 </details>
 
