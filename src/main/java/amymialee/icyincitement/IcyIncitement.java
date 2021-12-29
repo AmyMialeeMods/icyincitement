@@ -9,12 +9,13 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.tag.Tag;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.Rarity;
 import net.minecraft.util.registry.Registry;
 
 public class IcyIncitement implements ModInitializer {
     public static String MODID = "icyincitement";
-    public static Item EMPTY_SPRINKLER = new EmptySprinklerItem(new FabricItemSettings().group(ItemGroup.COMBAT).maxCount(1));
-    public static Item SNOWBALL_SPRINKLER = new SnowballSprinklerItem(new FabricItemSettings().group(ItemGroup.COMBAT).maxCount(1).maxDamage(192));
+    public static Item EMPTY_SPRINKLER = new EmptySprinklerItem(new FabricItemSettings().group(ItemGroup.COMBAT).rarity(Rarity.UNCOMMON).maxCount(1));
+    public static Item SNOWBALL_SPRINKLER = new SnowballSprinklerItem(new FabricItemSettings().group(ItemGroup.COMBAT).rarity(Rarity.EPIC).maxCount(1).maxDamage(192));
     public static final Tag<Item> SNOWBALLS = TagFactory.ITEM.create(new Identifier(MODID, "snowballs"));
 
     @Override

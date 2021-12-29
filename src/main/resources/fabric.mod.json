@@ -3,18 +3,18 @@
   "id": "icy-incitement",
   "version": "${version}",
   "name": "Icy Incitement",
-  "description": "",
+  "description": "A convenient chilly gadget!",
   "authors": [
     "AmyMialee"
   ],
-  "contact": {},
+  "contact": {
+    "homepage": "https://github.com/AmyMialeeMods/icy-incitement",
+    "issues": "https://github.com/AmyMialeeMods/icy-incitement/issues"
+  },
   "license": "All-Rights-Reserved",
-  "icon": "assets/icy-incitement/icon.png",
+  "icon": "assets/icyincitement/icon.png",
   "environment": "*",
   "entrypoints": {
-    "client": [
-      "amymialee.icyincitement.IcyIncitementClient"
-    ],
     "main": [
       "amymialee.icyincitement.IcyIncitement"
     ]
@@ -22,7 +22,16 @@
   "mixins": [
     "icy-incitement.mixins.json"
   ],
-  "depends": {
-    "fabric": "*"
+  "custom": {
+    "modupdater": {
+      "strategy": "curseforge",
+      "projectID": 561319,
+      "strict": false
+    },
+    "modmenu": {
+      "links": {
+        "modmenu.discord": "https://discord.gg/P4dUsxv6An"
+      }
+    }
   }
 }

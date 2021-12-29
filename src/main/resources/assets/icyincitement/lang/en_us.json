@@ -1,4 +1,8 @@
 {
+  "item.icyincitement.empty_sprinkler" : "Snowball Sprinkler",
   "item.icyincitement.snowball_sprinkler" : "Snowball Sprinkler",
-  "item.icyincitement.empty_sprinkler" : "Snowball Sprinkler"
+
+  "item.icyincitement.empty_sprinkler.description_1" : "Can fire snowballs at high speeds!",
+  "item.icyincitement.empty_sprinkler.description_2" : "Could be enhanced with some way to generate snow.",
+  "item.icyincitement.snowball_sprinkler.description" : "Generates mass quantities of snowballs to fire at incredible speed!"
 }

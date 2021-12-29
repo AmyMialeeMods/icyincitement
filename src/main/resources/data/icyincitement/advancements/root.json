@@ -19,7 +19,7 @@
         "background": "minecraft:textures/block/snow.png"
     },
     "criteria": {
-        "Free": {
+        "free": {
             "trigger": "minecraft:tick"
         }
     },

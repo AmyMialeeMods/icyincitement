@@ -1,26 +1,27 @@
 package amymialee.icyincitement.common.items;
 
 import amymialee.icyincitement.IcyIncitement;
-import net.minecraft.entity.Entity;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.passive.SnowGolemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.thrown.SnowballEntity;
-import net.minecraft.item.*;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.item.RangedWeaponItem;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.tag.ItemTags;
-import net.minecraft.tag.Tag;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.TypedActionResult;
-import net.minecraft.util.UseAction;
+import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
+import net.minecraft.util.*;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3f;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
 import java.util.function.Predicate;
 
 public class EmptySprinklerItem extends RangedWeaponItem {
@@ -52,13 +53,14 @@ public class EmptySprinklerItem extends RangedWeaponItem {
         if (itemStack.getCount() > 0) {
             world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_SNOWBALL_THROW, SoundCategory.NEUTRAL, 0.1f, 1f / (world.getRandom().nextFloat() * 0.4f + 0.8f));
 
+            int balls = 1;
+            if (itemStack.getItem() == Items.SNOW_BLOCK) {
+                balls = 4;
+            } else if (itemStack.getItem() == Items.SNOW) {
+                balls = 2;
+            }
+
             if (!world.isClient) {
-                int balls = 1;
-                if (itemStack.getItem() == Items.SNOW_BLOCK) {
-                    balls = 4;
-                } else if (itemStack.getItem() == Items.SNOW) {
-                    balls = 2;
-                }
                 for (int i = 0; i < balls; i++) {
                     SnowballEntity snowballEntity = new SnowballEntity(world, user);
                     snowballEntity.setItem(Items.SNOWBALL.getDefaultStack());
@@ -75,11 +77,11 @@ public class EmptySprinklerItem extends RangedWeaponItem {
             float h = MathHelper.cos(yaw * ((float) Math.PI / 180)) * MathHelper.cos(pitch * ((float) Math.PI / 180)) * .25f;
             Vec3f vec = new Vec3f(f, g, h);
 
-            vec.scale(-0.175f);
+            vec.scale(-0.175f * balls);
             user.addVelocity(vec.getX(), vec.getY(), vec.getZ());
 
             if (pitch >= 30) {
-                user.fallDistance -= 1;
+                user.fallDistance -= balls;
                 if (user.fallDistance < 0) {
                     user.fallDistance = 0;
                 }
@@ -94,14 +96,14 @@ public class EmptySprinklerItem extends RangedWeaponItem {
     @Override
     public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
         if (entity instanceof SnowGolemEntity) {
-            ItemEntity itemEntity = user.dropItem(IcyIncitement.SNOWBALL_SPRINKLER, 1);
-            if (itemEntity != null) {
-                itemEntity.setVelocity(itemEntity.getVelocity().add(
-                        (user.getRandom().nextFloat() - user.getRandom().nextFloat()) * 0.1f,
-                        user.getRandom().nextFloat() * 0.05f,
-                        (user.getRandom().nextFloat() - user.getRandom().nextFloat()) * 0.1f)
-                );
-            }
+            ItemEntity itemEntity = new ItemEntity(entity.world, entity.getX(), entity.getY(), entity.getZ(), new ItemStack(IcyIncitement.SNOWBALL_SPRINKLER));
+            itemEntity.setPickupDelay(0);
+            itemEntity.setVelocity(itemEntity.getVelocity().add(
+                    (entity.getRandom().nextFloat() - entity.getRandom().nextFloat()) * 0.1f,
+                    entity.getRandom().nextFloat() * 0.05f,
+                    (entity.getRandom().nextFloat() - entity.getRandom().nextFloat()) * 0.1f)
+            );
+            entity.world.spawnEntity(itemEntity);
             stack.decrement(1);
             for (int i = 0; i < 20; ++i) {
                 double d = entity.getRandom().nextGaussian() * 0.02;
@@ -109,6 +111,7 @@ public class EmptySprinklerItem extends RangedWeaponItem {
                 double f = entity.getRandom().nextGaussian() * 0.02;
                 entity.world.addParticle(ParticleTypes.POOF, entity.getParticleX(1.0), entity.getRandomBodyY(), entity.getParticleZ(1.0), d, e, f);
             }
+            entity.world.playSoundFromEntity(null, itemEntity, SoundEvents.ENTITY_FIREWORK_ROCKET_BLAST, SoundCategory.PLAYERS, 0.6f, 1);
             entity.discard();
         }
         return super.useOnEntity(stack, user, entity, hand);
@@ -118,5 +121,12 @@ public class EmptySprinklerItem extends RangedWeaponItem {
     public void onCraft(ItemStack stack, World world, PlayerEntity player) {
         stack.setDamage(4);
         super.onCraft(stack, world, player);
+    }
+
+    @Override
+    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+        super.appendTooltip(stack, world, tooltip, context);
+        tooltip.add(new TranslatableText(stack.getTranslationKey()+".description_1").formatted(Formatting.AQUA));
+        tooltip.add(new TranslatableText(stack.getTranslationKey()+".description_2").formatted(Formatting.DARK_AQUA));
     }
 }

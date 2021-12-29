@@ -1,5 +1,6 @@
 package amymialee.icyincitement.common.items;
 
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -10,12 +11,18 @@ import net.minecraft.item.ItemUsage;
 import net.minecraft.item.Items;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.UseAction;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3f;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public class SnowballSprinklerItem extends Item {
     public SnowballSprinklerItem(Settings settings) {
@@ -74,5 +81,11 @@ public class SnowballSprinklerItem extends Item {
     public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
         stack.setDamage(stack.getDamage() - 1);
         super.inventoryTick(stack, world, entity, slot, selected);
+    }
+
+    @Override
+    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+        super.appendTooltip(stack, world, tooltip, context);
+        tooltip.add(new TranslatableText(stack.getTranslationKey()+".description").formatted(Formatting.AQUA));
     }
 }

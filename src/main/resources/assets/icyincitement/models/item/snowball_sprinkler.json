@@ -1,6 +1,6 @@
 {
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "minecraft:item/iron_hoe"
-  }
+	"parent": "icyincitement:item/empty_sprinkler",
+	"textures": {
+		"layer0": "icyincitement:item/snowball_sprinkler"
+	}
 }
