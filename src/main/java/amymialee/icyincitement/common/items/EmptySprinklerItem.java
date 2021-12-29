@@ -77,7 +77,7 @@ public class EmptySprinklerItem extends RangedWeaponItem {
             float h = MathHelper.cos(yaw * ((float) Math.PI / 180)) * MathHelper.cos(pitch * ((float) Math.PI / 180)) * .25f;
             Vec3f vec = new Vec3f(f, g, h);
 
-            vec.scale(-0.175f * balls);
+            vec.scale(-0.0875f * (1 + (0.3f * (balls - 1))));
             user.addVelocity(vec.getX(), vec.getY(), vec.getZ());
 
             if (pitch >= 30) {
@@ -87,7 +87,9 @@ public class EmptySprinklerItem extends RangedWeaponItem {
                 }
             }
 
-            itemStack.decrement(1);
+            if (!user.getAbilities().creativeMode) itemStack.decrement(1);
+
+            user.getItemCooldownManager().set(asItem(), 2);
             return TypedActionResult.success(stack);
         }
         return TypedActionResult.fail(stack);
