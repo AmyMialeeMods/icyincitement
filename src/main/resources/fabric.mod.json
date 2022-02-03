@@ -15,6 +15,9 @@
   "icon": "assets/icyincitement/icon.png",
   "environment": "*",
   "entrypoints": {
+    "client": [
+      "amymialee.icyincitement.IcyIncitementClient"
+    ],
     "main": [
       "amymialee.icyincitement.IcyIncitement"
     ]

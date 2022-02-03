@@ -2,7 +2,8 @@
   "item.icyincitement.empty_sprinkler" : "Snowball Sprinkler",
   "item.icyincitement.snowball_sprinkler" : "Snowball Sprinkler",
 
-  "item.icyincitement.empty_sprinkler.description_1" : "Can fire snowballs at high speeds!",
-  "item.icyincitement.empty_sprinkler.description_2" : "Could be enhanced with some way to generate snow.",
-  "item.icyincitement.snowball_sprinkler.description" : "Generates mass quantities of snowballs to fire at incredible speed!"
+  "item.icyincitement.empty_sprinkler.description_1" : "Launch high velocity snow!",
+  "item.icyincitement.empty_sprinkler.description_2" : "Could be enhanced with a snow source.",
+  "item.icyincitement.snowball_sprinkler.description_1" : "Fire endless snowballs!",
+  "item.icyincitement.snowball_sprinkler.description_2" : "Pushes you back from the force!"
 }

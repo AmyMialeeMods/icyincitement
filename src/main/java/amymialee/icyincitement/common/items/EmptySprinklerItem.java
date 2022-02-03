@@ -90,7 +90,7 @@ public class EmptySprinklerItem extends RangedWeaponItem {
             if (!user.getAbilities().creativeMode) itemStack.decrement(1);
 
             user.getItemCooldownManager().set(asItem(), 2);
-            return TypedActionResult.success(stack);
+            return TypedActionResult.success(stack, false);
         }
         return TypedActionResult.fail(stack);
     }
@@ -117,12 +117,6 @@ public class EmptySprinklerItem extends RangedWeaponItem {
             entity.discard();
         }
         return super.useOnEntity(stack, user, entity, hand);
-    }
-
-    @Override
-    public void onCraft(ItemStack stack, World world, PlayerEntity player) {
-        stack.setDamage(4);
-        super.onCraft(stack, world, player);
     }
 
     @Override

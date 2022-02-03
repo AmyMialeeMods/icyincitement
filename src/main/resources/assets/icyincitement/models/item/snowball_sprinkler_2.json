@@ -1,0 +1,6 @@
+{
+  "parent": "icyincitement:item/empty_sprinkler",
+  "textures": {
+    "layer0": "icyincitement:item/snowball_sprinkler_2"
+  }
+}
