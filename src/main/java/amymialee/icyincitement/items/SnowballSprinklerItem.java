@@ -1,10 +1,10 @@
-package amymialee.icyincitement.common.items;
+package amymialee.icyincitement.items;
 
+import amymialee.icyincitement.entity.RapidSnowballEntity;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.thrown.SnowballEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsage;
@@ -49,7 +49,7 @@ public class SnowballSprinklerItem extends Item {
         if (stack.getDamage() < 192) {
             world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_SNOWBALL_THROW, SoundCategory.NEUTRAL, 0.1f, 1f / (world.getRandom().nextFloat() * 0.4f + 0.8f));
             if (!world.isClient) {
-                SnowballEntity snowballEntity = new SnowballEntity(world, user);
+                RapidSnowballEntity snowballEntity = new RapidSnowballEntity(world, user);
                 snowballEntity.setItem(Items.SNOWBALL.getDefaultStack());
                 snowballEntity.setVelocity(user, user.getPitch(), user.getYaw(), 0.0f, 2.5f, 3.5f);
                 world.spawnEntity(snowballEntity);

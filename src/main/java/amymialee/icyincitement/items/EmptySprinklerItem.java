@@ -1,12 +1,12 @@
-package amymialee.icyincitement.common.items;
+package amymialee.icyincitement.items;
 
 import amymialee.icyincitement.IcyIncitement;
+import amymialee.icyincitement.entity.RapidSnowballEntity;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.passive.SnowGolemEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.thrown.SnowballEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.RangedWeaponItem;
@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 public class EmptySprinklerItem extends RangedWeaponItem {
-    public static final Predicate<ItemStack> SNOWBALLS = stack -> stack.isIn(IcyIncitement.SNOWBALLS);
+    public static final Predicate<ItemStack> SNOWBALLS = stack -> stack.isOf(Items.SNOWBALL);
 
     public EmptySprinklerItem(Settings settings) {
         super(settings);
@@ -53,20 +53,11 @@ public class EmptySprinklerItem extends RangedWeaponItem {
         if (itemStack.getCount() > 0) {
             world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_SNOWBALL_THROW, SoundCategory.NEUTRAL, 0.1f, 1f / (world.getRandom().nextFloat() * 0.4f + 0.8f));
 
-            int balls = 1;
-            if (itemStack.getItem() == Items.SNOW_BLOCK) {
-                balls = 4;
-            } else if (itemStack.getItem() == Items.SNOW) {
-                balls = 2;
-            }
-
             if (!world.isClient) {
-                for (int i = 0; i < balls; i++) {
-                    SnowballEntity snowballEntity = new SnowballEntity(world, user);
-                    snowballEntity.setItem(Items.SNOWBALL.getDefaultStack());
-                    snowballEntity.setVelocity(user, user.getPitch(), user.getYaw(), 0.0f, 3.5f, balls > 1 ? 2f : 0f);
-                    world.spawnEntity(snowballEntity);
-                }
+                RapidSnowballEntity snowballEntity = new RapidSnowballEntity(world, user);
+                snowballEntity.setItem(Items.SNOWBALL.getDefaultStack());
+                snowballEntity.setVelocity(user, user.getPitch(), user.getYaw(), 0.0f, 3.5f, 0f);
+                world.spawnEntity(snowballEntity);
             }
 
             float yaw = user.getHeadYaw();
@@ -77,11 +68,11 @@ public class EmptySprinklerItem extends RangedWeaponItem {
             float h = MathHelper.cos(yaw * ((float) Math.PI / 180)) * MathHelper.cos(pitch * ((float) Math.PI / 180)) * .25f;
             Vec3f vec = new Vec3f(f, g, h);
 
-            vec.scale(-0.0875f * (1 + (0.3f * (balls - 1))));
+            vec.scale(-0.175f);
             user.addVelocity(vec.getX(), vec.getY(), vec.getZ());
 
             if (pitch >= 30) {
-                user.fallDistance -= balls;
+                user.fallDistance -= 4;
                 if (user.fallDistance < 0) {
                     user.fallDistance = 0;
                 }
