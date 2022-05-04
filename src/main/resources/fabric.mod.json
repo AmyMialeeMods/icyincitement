@@ -22,6 +22,9 @@
       "amymialee.icyincitement.IcyIncitement"
     ]
   },
+  "mixins": [
+    "icyincitement.mixins.json"
+  ],
   "depends": {
     "fabric": "*"
   },
