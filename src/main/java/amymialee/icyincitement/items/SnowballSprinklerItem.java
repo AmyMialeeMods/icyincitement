@@ -12,7 +12,6 @@ import net.minecraft.item.Items;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
@@ -85,8 +84,8 @@ public class SnowballSprinklerItem extends Item {
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+        tooltip.add(Text.translatable(stack.getTranslationKey()+".description_1").formatted(Formatting.AQUA));
+        tooltip.add(Text.translatable(stack.getTranslationKey()+".description_2").formatted(Formatting.DARK_AQUA));
         super.appendTooltip(stack, world, tooltip, context);
-        tooltip.add(new TranslatableText(stack.getTranslationKey()+".description_1").formatted(Formatting.AQUA));
-        tooltip.add(new TranslatableText(stack.getTranslationKey()+".description_2").formatted(Formatting.DARK_AQUA));
     }
 }
