@@ -4,7 +4,7 @@
   "package": "amymialee.icyincitement.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "ItemRendererMixin"
+    "DrawContextMixin"
   ],
   "client": [
   ],
