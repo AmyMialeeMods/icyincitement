@@ -17,9 +17,9 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.UseAction;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3f;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+import org.joml.Vector3f;
 
 import java.util.List;
 
@@ -60,10 +60,10 @@ public class SnowballSprinklerItem extends Item {
             float f = -MathHelper.sin(yaw * ((float) Math.PI / 180)) * MathHelper.cos(pitch * ((float) Math.PI / 180)) * .25f;
             float g = -MathHelper.sin(pitch * ((float) Math.PI / 180));
             float h = MathHelper.cos(yaw * ((float) Math.PI / 180)) * MathHelper.cos(pitch * ((float) Math.PI / 180)) * .25f;
-            Vec3f vec = new Vec3f(f, g, h);
+            Vector3f vec = new Vector3f(f, g, h);
 
-            vec.scale(-0.075f);
-            user.addVelocity(vec.getX(), vec.getY(), vec.getZ());
+            vec.mul(-0.075f);
+            user.addVelocity(vec.x(), vec.y(), vec.z());
 
             if (pitch >= 30) {
                 user.fallDistance -= 1;

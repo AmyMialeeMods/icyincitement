@@ -14,15 +14,11 @@ import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.Hand;
-import net.minecraft.util.TypedActionResult;
-import net.minecraft.util.UseAction;
+import net.minecraft.util.*;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3f;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+import org.joml.Vector3f;
 
 import java.util.List;
 import java.util.function.Predicate;
@@ -52,7 +48,7 @@ public class EmptySprinklerItem extends RangedWeaponItem {
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         ItemStack stack = user.getStackInHand(hand);
-        ItemStack itemStack = user.getArrowType(stack);
+        ItemStack itemStack = user.getProjectileType(stack);
         if (itemStack.getCount() > 0) {
             world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_SNOWBALL_THROW, SoundCategory.NEUTRAL, 0.1f, 1f / (world.getRandom().nextFloat() * 0.4f + 0.8f));
 
@@ -69,10 +65,10 @@ public class EmptySprinklerItem extends RangedWeaponItem {
             float f = -MathHelper.sin(yaw * ((float) Math.PI / 180)) * MathHelper.cos(pitch * ((float) Math.PI / 180)) * .25f;
             float g = -MathHelper.sin(pitch * ((float) Math.PI / 180));
             float h = MathHelper.cos(yaw * ((float) Math.PI / 180)) * MathHelper.cos(pitch * ((float) Math.PI / 180)) * .25f;
-            Vec3f vec = new Vec3f(f, g, h);
+            Vector3f vec = new Vector3f(f, g, h);
 
-            vec.scale(-0.175f);
-            user.addVelocity(vec.getX(), vec.getY(), vec.getZ());
+            vec.mul(-0.175f);
+            user.addVelocity(vec.x(), vec.y(), vec.z());
 
             if (pitch >= 30) {
                 user.fallDistance -= 4;
@@ -92,22 +88,22 @@ public class EmptySprinklerItem extends RangedWeaponItem {
     @Override
     public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
         if (entity instanceof SnowGolemEntity) {
-            ItemEntity itemEntity = new ItemEntity(entity.world, entity.getX(), entity.getY(), entity.getZ(), new ItemStack(IcyIncitement.SNOWBALL_SPRINKLER));
+            ItemEntity itemEntity = new ItemEntity(entity.getWorld(), entity.getX(), entity.getY(), entity.getZ(), new ItemStack(IcyIncitement.SNOWBALL_SPRINKLER));
             itemEntity.setPickupDelay(0);
             itemEntity.setVelocity(itemEntity.getVelocity().add(
                     (entity.getRandom().nextFloat() - entity.getRandom().nextFloat()) * 0.1f,
                     entity.getRandom().nextFloat() * 0.05f,
                     (entity.getRandom().nextFloat() - entity.getRandom().nextFloat()) * 0.1f)
             );
-            entity.world.spawnEntity(itemEntity);
+            entity.getWorld().spawnEntity(itemEntity);
             stack.decrement(1);
             for (int i = 0; i < 20; ++i) {
                 double d = entity.getRandom().nextGaussian() * 0.02;
                 double e = entity.getRandom().nextGaussian() * 0.02;
                 double f = entity.getRandom().nextGaussian() * 0.02;
-                entity.world.addParticle(ParticleTypes.POOF, entity.getParticleX(1.0), entity.getRandomBodyY(), entity.getParticleZ(1.0), d, e, f);
+                entity.getWorld().addParticle(ParticleTypes.POOF, entity.getParticleX(1.0), entity.getRandomBodyY(), entity.getParticleZ(1.0), d, e, f);
             }
-            entity.world.playSoundFromEntity(null, itemEntity, SoundEvents.ENTITY_FIREWORK_ROCKET_BLAST, SoundCategory.PLAYERS, 0.6f, 1);
+            entity.getWorld().playSoundFromEntity(null, itemEntity, SoundEvents.ENTITY_FIREWORK_ROCKET_BLAST, SoundCategory.PLAYERS, 0.6f, 1);
             entity.discard();
         }
         return super.useOnEntity(stack, user, entity, hand);
