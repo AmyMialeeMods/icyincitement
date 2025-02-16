@@ -30,7 +30,6 @@ public class FrozenComponent implements AutoSyncedComponent, CommonTickingCompon
         if (this.frost > 0) {
             this.frost--;
             var sync = this.frost <= 0;
-
             if (sync) this.sync();
         }
     }

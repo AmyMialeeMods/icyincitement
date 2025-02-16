@@ -31,9 +31,13 @@ public class IcyIncitement implements ModInitializer, EntityComponentInitializer
     public static Item SNOWBALL_SPRINKLER = REGISTRY.register("snowball_sprinkler", new Item.Settings().rarity(Rarity.EPIC).maxCount(1), SnowballSprinklerItem::new, ItemGroups.COMBAT);
     public static EntityType<IceBallEntity> ICEBALL = REGISTRY.register("iceball", EntityType.Builder.<IceBallEntity>create(IceBallEntity::new, SpawnGroup.MISC).dropsNothing().dimensions(0.25F, 0.25F).maxTrackingRange(8).trackingTickInterval(2));
     public static final MValueCategory CATEGORY = new MValueCategory(id(MOD_ID), SNOWBALL_SPRINKLER, Identifier.ofVanilla("textures/block/ice.png"), 16, 16);
-    public static final MValue<Integer> MAX_SNOWBALLS = MValue.of(id("max_snowballs"), MValue.INTEGER.of(100, 1, 256)).category(CATEGORY).item(Items.SNOW_BLOCK).build();
-    public static final MValue<Double> RECHARGE_RATE = MValue.of(id("recharge_rate"), MValue.DOUBLE.of(0.25, 0d, 1d)).category(CATEGORY).item(Items.POWDER_SNOW_BUCKET).build();
-    public static final MValue<Double> RECOIL = MValue.of(id("recoil"), MValue.DOUBLE.of(0.075, 0d, 0.2d, 3)).category(CATEGORY).item(Items.TRIDENT).build();
+    public static final MValue<Integer> MAX_SNOWBALLS = MValue.of(id("max_snowballs"), MValue.INTEGER.of(128, 1, 256)).category(CATEGORY).item(Items.SNOW_BLOCK).build();
+    public static final MValue<Double> RECHARGE_RATE = MValue.of(id("recharge_rate"), MValue.DOUBLE.of(0.2, 0d, 1d)).category(CATEGORY).item(Items.POWDER_SNOW_BUCKET).build();
+    public static final MValue<Double> RECOIL = MValue.of(id("recoil"), MValue.DOUBLE.of(0.055, 0d, 0.2d, 3)).category(CATEGORY).item(Items.TRIDENT).build();
+    public static final MValue<Boolean> SLOWDOWN = MValue.of(id("slowdown"), MValue.BOOLEAN_FALSE).category(CATEGORY).item(Items.SHIELD).build();
+    public static final MValue<Float> SNOW_DAMAGE = MValue.of(id("snow_damage"), MValue.FLOAT.of(0.05f, 0f, 4f)).category(CATEGORY).item(Items.IRON_SWORD).build();
+    public static final MValue<Float> SNOW_HEALING = MValue.of(id("snow_healing"), MValue.FLOAT.of(0.25f, 0f, 4f)).category(CATEGORY).item(Items.GHAST_TEAR).build();
+    public static final MValue<Double> SNOW_GRAVITY = MValue.of(id("snow_gravity"), MValue.DOUBLE.of(0.03d, 0d, 0.2d)).category(CATEGORY).item(Items.GRAVEL).build();
 
     public @Override void onInitialize() {
         NumericProperties.ID_MAPPER.put(id("charge"), SnowComponent.SnowProperty.CODEC);

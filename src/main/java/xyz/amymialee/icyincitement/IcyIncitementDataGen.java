@@ -30,6 +30,14 @@ public class IcyIncitementDataGen extends MDataGen {
         builder.add(IcyIncitement.RECHARGE_RATE.getDescriptionTranslationKey(), "The rate at which the Snowball Sprinkler recharges snowballs per tick\nAt a rate of 1, the meter will never go down");
         builder.add(IcyIncitement.RECOIL.getTranslationKey(), "Recoil");
         builder.add(IcyIncitement.RECOIL.getDescriptionTranslationKey(), "The amount of recoil the Snowball Sprinkler applies to the player when fired");
+        builder.add(IcyIncitement.SLOWDOWN.getTranslationKey(), "Slowdown");
+        builder.add(IcyIncitement.SLOWDOWN.getDescriptionTranslationKey(), "Should you be slowed while firing the Snowball Sprinkler");
+        builder.add(IcyIncitement.SNOW_DAMAGE.getTranslationKey(), "Snow Damage");
+        builder.add(IcyIncitement.SNOW_DAMAGE.getDescriptionTranslationKey(), "How much should the Snowball Sprinkler damage enemies per hit");
+        builder.add(IcyIncitement.SNOW_HEALING.getTranslationKey(), "Snow Healing");
+        builder.add(IcyIncitement.SNOW_HEALING.getDescriptionTranslationKey(), "How much should the Snowball Sprinkler heal snowy entities per hit");
+        builder.add(IcyIncitement.SNOW_GRAVITY.getTranslationKey(), "Snow Gravity");
+        builder.add(IcyIncitement.SNOW_GRAVITY.getDescriptionTranslationKey(), "How much gravity should Snowball Sprinkler snowballs experience?");
         builder.add("advancements.icyincitement.title", "Icy Incitement");
         builder.add("advancements.icyincitement.description", "Fill an Empty Sprinkler with a real snow production source");
     }

@@ -9,5 +9,13 @@
   "mvalue.icyincitement.recharge_rate.desc": "The rate at which the Snowball Sprinkler recharges snowballs per tick\nAt a rate of 1, the meter will never go down",
   "mvalue.icyincitement.recoil": "Recoil",
   "mvalue.icyincitement.recoil.desc": "The amount of recoil the Snowball Sprinkler applies to the player when fired",
+  "mvalue.icyincitement.slowdown": "Slowdown",
+  "mvalue.icyincitement.slowdown.desc": "Should you be slowed while firing the Snowball Sprinkler",
+  "mvalue.icyincitement.snow_damage": "Snow Damage",
+  "mvalue.icyincitement.snow_damage.desc": "How much should the Snowball Sprinkler damage enemies per hit",
+  "mvalue.icyincitement.snow_gravity": "Snow Gravity",
+  "mvalue.icyincitement.snow_gravity.desc": "How much gravity should Snowball Sprinkler snowballs experience?",
+  "mvalue.icyincitement.snow_healing": "Snow Healing",
+  "mvalue.icyincitement.snow_healing.desc": "How much should the Snowball Sprinkler heal snowy entities per hit",
   "mvaluecategory.icyincitement.icyincitement": "Icy Incitement"
 }

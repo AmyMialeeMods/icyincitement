@@ -44,7 +44,7 @@ public class IceBallEntity extends ProjectileEntity {
 		float drag;
 		if (this.isTouchingWater()) {
 			for (var i = 0; i < 4; i++) this.getWorld().addParticle(ParticleTypes.BUBBLE, pos.x - velocity.x * 0.25, pos.y - velocity.y * 0.25, pos.z - velocity.z * 0.25, velocity.x, velocity.y, velocity.z);
-			drag = 0.8F;
+			drag = 0.86F;
 		} else {
 			drag = 0.99F;
 		}
@@ -76,12 +76,12 @@ public class IceBallEntity extends ProjectileEntity {
 		var entity = entityHitResult.getEntity();
 		entity.timeUntilRegen = 0;
 		if (!entity.canFreeze()) {
-			if (entity instanceof LivingEntity living) living.heal(0.25f);
+			if (entity instanceof LivingEntity living) living.heal(IcyIncitement.SNOW_HEALING.get());
 			return;
 		}
 		var frozen = entity.getFrozenTicks();
 		entity.setFrozenTicks(Math.min(entity.getMinFreezeDamageTicks() * 2, frozen + (frozen > entity.getMinFreezeDamageTicks() ? 4 : 16)));
-		entity.serverDamage(this.getDamageSources().create(DamageTypes.FREEZE, this, this.getOwner()), 0.05f);
+		entity.serverDamage(this.getDamageSources().create(DamageTypes.FREEZE, this, this.getOwner()), IcyIncitement.SNOW_DAMAGE.get());
 	}
 
 	@Override
@@ -92,7 +92,7 @@ public class IceBallEntity extends ProjectileEntity {
 
 	@Override
 	protected double getGravity() {
-		return 0.03;
+		return IcyIncitement.SNOW_GRAVITY.get();
 	}
 
 	@Override

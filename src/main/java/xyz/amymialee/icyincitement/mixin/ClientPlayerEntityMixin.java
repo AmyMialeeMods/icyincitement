@@ -12,6 +12,6 @@ import xyz.amymialee.icyincitement.IcyIncitement;
 public class ClientPlayerEntityMixin {
     @WrapOperation(method = "tickMovement", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/network/ClientPlayerEntity;isUsingItem()Z"))
     private boolean icyincitement$noslowdown(ClientPlayerEntity player, @NotNull Operation<Boolean> original) {
-        return original.call(player) && !player.getActiveItem().isOf(IcyIncitement.EMPTY_SPRINKLER) && !player.getActiveItem().isOf(IcyIncitement.SNOWBALL_SPRINKLER);
+        return original.call(player) && (IcyIncitement.SLOWDOWN.get() || !player.getActiveItem().isOf(IcyIncitement.SNOWBALL_SPRINKLER));
     }
 }
