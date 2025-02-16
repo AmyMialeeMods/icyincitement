@@ -14,18 +14,7 @@ The Snowball Sprinkler can then be improved by inserting a Snow Golem.
 You can do this by right-clicking on a Snow Golem with it.  
 This upgraded form will rapidly replenish its snowball supply.  
 This lets you jump very high or keep back crowds of mobs.  
-<img src="https://github.com/AmyMialeeMods/icy-incitement/raw/main/assets/upgrading.png">  
-
-To add Icy Incitement to your project as a dependency you need to add the following to your `build.gradle`:
-```gradle
-repositories {
-	maven { url = "https://maven.willbl.dev/releases" }
-}
-
-dependencies {
-	modImplementation "amymialee:icy-incitement:1.1.4+1.19.x"
-}
-```
+<img src="https://github.com/AmyMialeeMods/icy-incitement/raw/main/assets/upgrading.png">
 
 <table align="center">
     <tr>

@@ -1,39 +1,52 @@
 {
   "schemaVersion": 1,
-  "id": "icy-incitement",
+  "id": "icyincitement",
   "version": "${version}",
+
   "name": "Icy Incitement",
   "description": "A convenient chilly gadget!",
   "authors": [
     "AmyMialee"
   ],
   "contact": {
-    "homepage": "https://github.com/AmyMialeeMods/icy-incitement",
-    "issues": "https://github.com/AmyMialeeMods/icy-incitement/issues"
+    "email": "icyincitement@amymialee.xyz",
+    "homepage": "http://amymialee.xyz/",
+    "irc": "",
+    "sources": "https://github.com/AmyMialeeMods/icyincitement",
+    "issues": "https://github.com/AmyMialeeMods/icyincitement/issues"
   },
   "license": "All-Rights-Reserved",
   "icon": "assets/icyincitement/icon.png",
+
+  "accessWidener" : "icyincitement.accesswidener",
   "environment": "*",
   "entrypoints": {
     "client": [
-      "amymialee.icyincitement.IcyIncitementClient"
+      "xyz.amymialee.icyincitement.IcyIncitementClient"
     ],
     "main": [
-      "amymialee.icyincitement.IcyIncitement"
+      "xyz.amymialee.icyincitement.IcyIncitement"
+    ],
+    "fabric-datagen": [
+      "xyz.amymialee.icyincitement.IcyIncitementDataGen"
+    ],
+    "cardinal-components-entity": [
+      "xyz.amymialee.icyincitement.IcyIncitement"
     ]
   },
   "mixins": [
     "icyincitement.mixins.json"
   ],
+
   "depends": {
     "fabric": "*"
   },
+
   "custom": {
-    "modupdater": {
-      "strategy": "curseforge",
-      "projectID": 561319,
-      "strict": false
-    },
+    "cardinal-components": [
+      "icyincitement:snow",
+      "icyincitement:frozen"
+    ],
     "modmenu": {
       "links": {
         "modmenu.discord": "https://discord.gg/P4dUsxv6An"

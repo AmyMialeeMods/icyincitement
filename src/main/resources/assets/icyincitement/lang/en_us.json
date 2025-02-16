@@ -1,9 +1,0 @@
-{
-  "item.icyincitement.empty_sprinkler" : "Snowball Sprinkler",
-  "item.icyincitement.snowball_sprinkler" : "Snowball Sprinkler",
-
-  "item.icyincitement.empty_sprinkler.description_1" : "Launch high velocity snow!",
-  "item.icyincitement.empty_sprinkler.description_2" : "Could be enhanced with a snow source.",
-  "item.icyincitement.snowball_sprinkler.description_1" : "Fire endless snowballs!",
-  "item.icyincitement.snowball_sprinkler.description_2" : "Pushes you back from the force!"
-}

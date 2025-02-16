@@ -1,12 +1,12 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "amymialee.icyincitement.mixin",
-  "compatibilityLevel": "JAVA_17",
+  "package": "xyz.amymialee.icyincitement.mixin",
+  "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "DrawContextMixin"
   ],
   "client": [
+    "ClientPlayerEntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1
