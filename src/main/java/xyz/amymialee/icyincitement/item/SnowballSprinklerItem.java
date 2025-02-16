@@ -39,8 +39,8 @@ public class SnowballSprinklerItem extends Item {
         var component = SnowComponent.KEY.get(player);
         if (!component.hasCharge()) return;
         world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_SNOWBALL_THROW, SoundCategory.NEUTRAL, 0.1f, 1f / (world.getRandom().nextFloat() * 0.4f + 0.8f));
-        if (world instanceof ServerWorld serverWorld) ProjectileEntity.spawnWithVelocity((a, b, c) -> new IceBallEntity(a, b), serverWorld, Items.SNOWBALL.getDefaultStack(), user, 0.0F, 1.75f, 4.0F);
-        var look = user.getRotationVector().multiply(-IcyIncitement.RECOIL.get());
+        if (world instanceof ServerWorld serverWorld) ProjectileEntity.spawnWithVelocity((a, b, c) -> new IceBallEntity(a, b), serverWorld, Items.SNOWBALL.getDefaultStack(), user, 0.0F, IcyIncitement.SNOW_VELOCITY.get(), IcyIncitement.SNOW_DIVERGENCE.get());
+        var look = user.getRotationVector().multiply(-IcyIncitement.HORIZONTAL_RECOIL.get(), -IcyIncitement.VERTICAL_RECOIL.get(), -IcyIncitement.HORIZONTAL_RECOIL.get());
         user.addVelocity(look.x, look.y, look.z);
         if (look.y > 0) user.fallDistance = Math.max(user.fallDistance - 1, 0);
         component.subtractCharge();

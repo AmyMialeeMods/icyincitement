@@ -1,13 +1,11 @@
 package xyz.amymialee.icyincitement.entity;
 
 import net.minecraft.block.Blocks;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityStatuses;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.data.DataTracker;
-import net.minecraft.entity.mob.BlazeEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.entity.projectile.ProjectileUtil;
 import net.minecraft.particle.ParticleTypes;
@@ -80,7 +78,7 @@ public class IceBallEntity extends ProjectileEntity {
 			return;
 		}
 		var frozen = entity.getFrozenTicks();
-		entity.setFrozenTicks(Math.min(entity.getMinFreezeDamageTicks() * 2, frozen + (frozen > entity.getMinFreezeDamageTicks() ? 4 : 16)));
+		entity.setFrozenTicks(Math.min(entity.getMinFreezeDamageTicks() * 2, frozen + (frozen > entity.getMinFreezeDamageTicks() ? 12 : 24)));
 		entity.serverDamage(this.getDamageSources().create(DamageTypes.FREEZE, this, this.getOwner()), IcyIncitement.SNOW_DAMAGE.get());
 	}
 
