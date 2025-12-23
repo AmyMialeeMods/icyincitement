@@ -4,34 +4,32 @@
   "version": "${version}",
 
   "name": "Icy Incitement",
-  "description": "A convenient chilly gadget!",
+  "description": "Some useful snowy tools!",
   "authors": [
     "AmyMialee"
   ],
   "contact": {
-    "email": "icyincitement@amymialee.xyz",
-    "homepage": "http://amymialee.xyz/",
-    "irc": "",
+    "email": "icyincitement@amymialee.dev",
+    "homepage": "https://amymialee.dev/",
     "sources": "https://github.com/AmyMialeeMods/icyincitement",
     "issues": "https://github.com/AmyMialeeMods/icyincitement/issues"
   },
   "license": "All-Rights-Reserved",
   "icon": "assets/icyincitement/icon.png",
 
-  "accessWidener" : "icyincitement.accesswidener",
   "environment": "*",
   "entrypoints": {
     "client": [
-      "xyz.amymialee.icyincitement.IcyIncitementClient"
+      "dev.amymialee.icyincitement.IcyIncitementClient"
     ],
     "main": [
-      "xyz.amymialee.icyincitement.IcyIncitement"
+      "dev.amymialee.icyincitement.IcyIncitement"
     ],
     "fabric-datagen": [
-      "xyz.amymialee.icyincitement.IcyIncitementDataGen"
+      "dev.amymialee.icyincitement.IcyIncitementDataGen"
     ],
-    "cardinal-components-entity": [
-      "xyz.amymialee.icyincitement.IcyIncitement"
+    "cardinal-components": [
+      "dev.amymialee.icyincitement.IcyIncitement"
     ]
   },
   "mixins": [
@@ -44,8 +42,7 @@
 
   "custom": {
     "cardinal-components": [
-      "icyincitement:snow",
-      "icyincitement:frozen"
+      "icyincitement:snow"
     ],
     "modmenu": {
       "links": {

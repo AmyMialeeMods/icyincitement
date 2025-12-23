@@ -1,5 +1,5 @@
 plugins {
-    id 'fabric-loom' version '1.9-SNAPSHOT'
+    id 'fabric-loom' version '1.14-SNAPSHOT'
     id "maven-publish"
 }
 
@@ -55,7 +55,6 @@ tasks.withType(JavaCompile).configureEach {
 java {
     sourceCompatibility = JavaVersion.VERSION_21
     targetCompatibility = JavaVersion.VERSION_21
-    archivesBaseName = project.mod_id
     withSourcesJar()
 }
 
