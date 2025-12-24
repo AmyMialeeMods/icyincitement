@@ -1,9 +1,9 @@
 package dev.amymialee.icyincitement.cca;
 
 import dev.amymialee.icyincitement.IcyIncitement;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.storage.ReadView;
-import net.minecraft.storage.WriteView;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import org.jspecify.annotations.NonNull;
 import org.ladysnake.cca.api.v3.component.ComponentKey;
 import org.ladysnake.cca.api.v3.component.ComponentRegistry;
@@ -12,10 +12,10 @@ import org.ladysnake.cca.api.v3.component.tick.CommonTickingComponent;
 
 public class SnowComponent implements AutoSyncedComponent, CommonTickingComponent {
     public static final ComponentKey<SnowComponent> KEY = ComponentRegistry.getOrCreate(IcyIncitement.id("snow"), SnowComponent.class);
-    private final PlayerEntity player;
+    private final Player player;
     private float charge = 0;
 
-    public SnowComponent(PlayerEntity player) {
+    public SnowComponent(Player player) {
         this.player = player;
     }
 
@@ -48,12 +48,12 @@ public class SnowComponent implements AutoSyncedComponent, CommonTickingComponen
     }
 
     @Override
-    public void readData(@NonNull ReadView readView) {
-        this.charge = readView.getFloat("charge", 0f);
+    public void readData(@NonNull ValueInput readView) {
+        this.charge = readView.getFloatOr("charge", 0f);
     }
 
     @Override
-    public void writeData(@NonNull WriteView writeView) {
+    public void writeData(@NonNull ValueOutput writeView) {
         writeView.putDouble("charge", this.charge);
     }
 }

@@ -1,53 +1,53 @@
 {
-  "schemaVersion": 1,
-  "id": "icyincitement",
-  "version": "${version}",
+	"schemaVersion": 1,
+	"id": "icyincitement",
+	"version": "${version}",
 
-  "name": "Icy Incitement",
-  "description": "Some useful snowy tools!",
-  "authors": [
-    "AmyMialee"
-  ],
-  "contact": {
-    "email": "icyincitement@amymialee.dev",
-    "homepage": "https://amymialee.dev/",
-    "sources": "https://github.com/AmyMialeeMods/icyincitement",
-    "issues": "https://github.com/AmyMialeeMods/icyincitement/issues"
-  },
-  "license": "All-Rights-Reserved",
-  "icon": "assets/icyincitement/icon.png",
+	"name": "Icy Incitement",
+	"description": "Some useful snowy tools!",
+	"authors": [
+		"AmyMialee",
+		"BackupCup"
+	],
+	"contact": {
+		"homepage": "https://amymialee.dev/",
+		"sources": "https://github.com/AmyMialeeMods/icyincitement",
+		"issues": "https://github.com/AmyMialeeMods/icyincitement/issues"
+	},
+	"license": "All-Rights-Reserved",
+	"icon": "assets/icyincitement/icon.png",
 
-  "environment": "*",
-  "entrypoints": {
-    "client": [
-      "dev.amymialee.icyincitement.IcyIncitementClient"
-    ],
-    "main": [
-      "dev.amymialee.icyincitement.IcyIncitement"
-    ],
-    "fabric-datagen": [
-      "dev.amymialee.icyincitement.IcyIncitementDataGen"
-    ],
-    "cardinal-components": [
-      "dev.amymialee.icyincitement.IcyIncitement"
-    ]
-  },
-  "mixins": [
-    "icyincitement.mixins.json"
-  ],
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"dev.amymialee.icyincitement.IcyIncitement"
+		],
+		"client": [
+			"dev.amymialee.icyincitement.IcyIncitementClient"
+		],
+		"fabric-datagen": [
+			"dev.amymialee.icyincitement.IcyIncitementDataGenerator"
+		],
+		"cardinal-components": [
+			"dev.amymialee.icyincitement.IcyIncitement"
+		]
+	},
+	"mixins": [
+		"icyincitement.mixins.json"
+	],
 
-  "depends": {
-    "fabric": "*"
-  },
+	"depends": {
+		"fabric-api": "*"
+	},
 
-  "custom": {
-    "cardinal-components": [
-      "icyincitement:snow"
-    ],
-    "modmenu": {
-      "links": {
-        "modmenu.discord": "https://discord.gg/P4dUsxv6An"
-      }
-    }
-  }
+	"custom": {
+		"cardinal-components": [
+			"icyincitement:snow"
+		],
+		"modmenu": {
+			"links": {
+				"modmenu.discord": "https://discord.gg/P4dUsxv6An"
+			}
+		}
+	}
 }

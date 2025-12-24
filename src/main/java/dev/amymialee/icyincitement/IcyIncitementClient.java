@@ -5,35 +5,33 @@ import dev.amymialee.icyincitement.cca.SnowComponent;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
-import net.minecraft.client.render.entity.FlyingItemEntityRenderer;
-import net.minecraft.client.render.item.property.numeric.NumericProperties;
-import net.minecraft.client.render.item.property.numeric.NumericProperty;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.HeldItemContext;
+import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.client.renderer.item.properties.numeric.RangeSelectItemModelProperties;
+import net.minecraft.client.renderer.item.properties.numeric.RangeSelectItemModelProperty;
+import net.minecraft.world.entity.ItemOwner;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.NonNull;
 
-@Environment(EnvType.CLIENT)
 public class IcyIncitementClient implements ClientModInitializer {
-    public @Override void onInitializeClient() {
-        NumericProperties.ID_MAPPER.put(IcyIncitement.id("charge"), SnowProperty.CODEC);
-    }
+	public @Override void onInitializeClient() {
+		RangeSelectItemModelProperties.ID_MAPPER.put(IcyIncitement.id("charge"), SnowProperty.CODEC);
+	}
 
-    @Environment(EnvType.CLIENT)
-    public record SnowProperty() implements NumericProperty {
-        public static final MapCodec<SnowProperty> CODEC = MapCodec.unit(new SnowProperty());
+	@Environment(EnvType.CLIENT)
+	public record SnowProperty() implements RangeSelectItemModelProperty {
+		public static final MapCodec<SnowProperty> CODEC = MapCodec.unit(new SnowProperty());
 
-        @Override
-        public float getValue(ItemStack stack, @Nullable ClientWorld world, @Nullable HeldItemContext context, int seed) {
-            if (context != null && context.getEntity() instanceof PlayerEntity player) return SnowComponent.KEY.get(player).getCharge();
-            return 0.0F;
-        }
+		@Override
+		public float get(@NonNull ItemStack stack, @Nullable ClientLevel world, @Nullable ItemOwner context, int seed) {
+			if (context != null && context.asLivingEntity() instanceof Player player) return SnowComponent.KEY.get(player).getCharge();
+			return 0.0F;
+		}
 
-        @Override
-        public MapCodec<SnowProperty> getCodec() {
-            return CODEC;
-        }
-    }
+		@Override
+		public @NonNull MapCodec<SnowProperty> type() {
+			return CODEC;
+		}
+	}
 }

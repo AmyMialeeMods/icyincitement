@@ -2,68 +2,65 @@ package dev.amymialee.icyincitement.item;
 
 import dev.amymialee.icyincitement.IcyIncitement;
 import dev.amymialee.icyincitement.cca.SnowComponent;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.DrawContext;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.ProjectileEntity;
-import net.minecraft.entity.projectile.thrown.SnowballEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUsage;
-import net.minecraft.item.Items;
-import net.minecraft.item.consume.UseAction;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Colors;
-import net.minecraft.util.Hand;
-import net.minecraft.world.World;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.CommonColors;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.Projectile;
+import net.minecraft.world.entity.projectile.throwableitemprojectile.Snowball;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 public class SnowballSprinklerItem extends Item {
-    public SnowballSprinklerItem(Settings settings) {
+    public SnowballSprinklerItem(Properties settings) {
         super(settings);
     }
 
     @Override
-    public void usageTick(World world, LivingEntity user, @NotNull ItemStack stack, int remainingUseTicks) {
-        if (!(user instanceof PlayerEntity player)) return;
+    public void onUseTick(@NonNull Level world, @NonNull LivingEntity user, @NotNull ItemStack stack, int remainingUseTicks) {
+        if (!(user instanceof Player player)) return;
         var component = SnowComponent.KEY.get(player);
         if (!component.hasCharge()) return;
-        world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_SNOWBALL_THROW, SoundCategory.NEUTRAL, 0.1f, 1f / (world.getRandom().nextFloat() * 0.4f + 0.8f));
-        if (world instanceof ServerWorld serverWorld) ProjectileEntity.spawnWithVelocity((a, b, c) -> new SnowballEntity(a, b, Items.SNOWBALL.getDefaultStack()), serverWorld, Items.SNOWBALL.getDefaultStack(), user, 0.0F, IcyIncitement.SNOW_VELOCITY.get(), IcyIncitement.SNOW_DIVERGENCE.get());
-        var look = user.getRotationVector().multiply(-IcyIncitement.HORIZONTAL_RECOIL.get(), -IcyIncitement.VERTICAL_RECOIL.get(), -IcyIncitement.HORIZONTAL_RECOIL.get());
-        user.addVelocity(look.x, look.y, look.z);
+        world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.SNOWBALL_THROW, SoundSource.NEUTRAL, 0.1f, 1f / (world.getRandom().nextFloat() * 0.4f + 0.8f));
+        if (world instanceof ServerLevel serverWorld) Projectile.spawnProjectileFromRotation((a, b, c) -> new Snowball(a, b, Items.SNOWBALL.getDefaultInstance()), serverWorld, Items.SNOWBALL.getDefaultInstance(), user, 0.0F, IcyIncitement.SNOW_VELOCITY.get(), IcyIncitement.SNOW_DIVERGENCE.get());
+        var look = user.getLookAngle().multiply(-IcyIncitement.HORIZONTAL_RECOIL.get(), -IcyIncitement.VERTICAL_RECOIL.get(), -IcyIncitement.HORIZONTAL_RECOIL.get());
+        user.push(look.x, look.y, look.z);
         user.fallDistance = Math.max(user.fallDistance - look.y * 8, 0);
         component.subtractCharge();
     }
 
     @Override
-    public ActionResult use(World world, PlayerEntity user, Hand hand) {
-        return ItemUsage.consumeHeldItem(world, user, hand);
+    public @NonNull InteractionResult use(@NonNull Level world, @NonNull Player user, @NonNull InteractionHand hand) {
+        return ItemUtils.startUsingInstantly(world, user, hand);
     }
 
     @Override
-    public int getMaxUseTime(ItemStack stack, LivingEntity user) {
+    public int getUseDuration(@NonNull ItemStack stack, @NonNull LivingEntity user) {
         return 72000;
     }
 
     @Override
-    public UseAction getUseAction(ItemStack stack) {
-        return UseAction.BOW;
+    public @NonNull ItemUseAnimation getUseAnimation(@NonNull ItemStack stack) {
+        return ItemUseAnimation.BOW;
     }
 
     @Override
-    public void mialib$renderCustomBar(DrawContext drawContext, ItemStack stack, int x, int y) {
-        var player = MinecraftClient.getInstance().player;
+    public void mialib$renderCustomBar(GuiGraphics drawContext, ItemStack stack, int x, int y) {
+        var player = Minecraft.getInstance().player;
         if (player == null) return;
         var charge = SnowComponent.KEY.get(player).getCharge();
         if (charge >= 1) return;
-        var matrices = drawContext.getMatrices();
+        var matrices = drawContext.pose();
         var rg = (int) (charge * 205 + 50);
-        drawContext.fill(x + 2, y + 13, x + 15, y + 15, Colors.BLACK);
+        drawContext.fill(x + 2, y + 13, x + 15, y + 15, CommonColors.BLACK);
         matrices.pushMatrix();
         matrices.translate(x + 2, y + 13);
         matrices.scale(charge * 13, 1f);
