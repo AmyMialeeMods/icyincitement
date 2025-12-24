@@ -51,6 +51,18 @@ public class IcyIncitement implements ModInitializer, EntityComponentInitializer
 	public static final MValue<Float> SNOW_VELOCITY = MValue.of(id("snow_velocity"), MValue.FLOAT.of(1.95f, 0f, 3f)).category(CATEGORY).item(Items.ARROW).build();
 	public static final MValue<Float> SNOW_DIVERGENCE = MValue.of(id("snow_divergence"), MValue.FLOAT.of(4f, 0f, 32f)).category(CATEGORY).item(Items.BOW).build();
 
+	//TODO
+	// buzzsaw name
+	// buzzsaw recipe
+	// tooltips for all items
+	// advancements for the mod (as a whole, making it interesting)
+	// maybe some configs for the buzzsaw
+	// netherite upgrade (this would be much later, prolly not in the main release)
+	// remember what the enchants are supposed to be
+	// make the enchants
+	// make the right click as a whole
+	
+
 	public @Override void onInitialize() {
 		Set<BlockPos> treeTargets = new HashSet<>();
 		PlayerBlockBreakEvents.BEFORE.register((world, player, pos, state, entity) -> {
