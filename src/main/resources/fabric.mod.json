@@ -42,6 +42,7 @@
 
 	"custom": {
 		"cardinal-components": [
+			"icyincitement:buzzsaw",
 			"icyincitement:snow"
 		],
 		"modmenu": {

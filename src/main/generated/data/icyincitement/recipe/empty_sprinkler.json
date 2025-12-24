@@ -2,17 +2,15 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "C": "minecraft:chest",
-    "D": "minecraft:dispenser",
+    "D": "minecraft:diamond",
     "I": "minecraft:iron_ingot",
-    "P": "minecraft:packed_ice",
-    "Q": "minecraft:quartz_stairs",
-    "S": "minecraft:snow_block"
+    "N": "minecraft:iron_nugget",
+    "S": "minecraft:stick"
   },
   "pattern": [
-    "DI ",
-    "IPQ",
-    " CS"
+    "I  ",
+    "ND ",
+    " SD"
   ],
   "result": {
     "count": 1,

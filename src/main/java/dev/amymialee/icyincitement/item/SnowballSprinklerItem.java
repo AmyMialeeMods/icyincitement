@@ -44,12 +44,17 @@ public class SnowballSprinklerItem extends Item {
 
     @Override
     public int getUseDuration(@NonNull ItemStack stack, @NonNull LivingEntity user) {
-        return 72000;
+        return Integer.MAX_VALUE;
     }
 
     @Override
     public @NonNull ItemUseAnimation getUseAnimation(@NonNull ItemStack stack) {
         return ItemUseAnimation.BOW;
+    }
+
+    @Override
+    public int mialib$getNameColor(ItemStack stack) {
+        return 0xFF9999FF;
     }
 
     @Override

@@ -1,11 +1,14 @@
 package dev.amymialee.icyincitement;
 
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.advancements.AdvancementType;
 import net.minecraft.advancements.criterion.InventoryChangeTrigger;
 import net.minecraft.advancements.criterion.ItemPredicate;
+import net.minecraft.client.data.models.ItemModelGenerators;
+import net.minecraft.client.data.models.model.ModelTemplates;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.recipes.RecipeCategory;
@@ -13,6 +16,8 @@ import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.network.chat.Component;
+import net.minecraft.tags.DamageTypeTags;
+import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.item.Items;
 import org.jetbrains.annotations.NotNull;
 import org.jspecify.annotations.NonNull;
@@ -24,6 +29,7 @@ public class IcyIncitementDataGenerator extends MDataGen {
 	protected @Override void generateTranslations(@NotNull MLanguageProvider provider, HolderLookup.Provider registryLookup, FabricLanguageProvider.@NotNull TranslationBuilder builder) {
 		builder.add(IcyIncitement.EMPTY_SPRINKLER, "Empty Sprinkler");
 		builder.add(IcyIncitement.SNOWBALL_SPRINKLER, "Snowball Sprinkler");
+		builder.add(IcyIncitement.BUZZSAW, "Buzzsaw");
 
 		builder.add(IcyIncitement.CATEGORY.getTranslationKey(), "Icy Incitement");
 		builder.add(IcyIncitement.MAX_SNOWBALLS.getTranslationKey(), "Max Snowballs");
@@ -41,6 +47,32 @@ public class IcyIncitementDataGenerator extends MDataGen {
 
 		builder.add("advancements.icyincitement.title", "Icy Incitement");
 		builder.add("advancements.icyincitement.description", "Fill an Empty Sprinkler with a real snow production source");
+	}
+
+	@Override
+	protected void generateItemModels(MModelProvider provider, @NonNull ItemModelGenerators generator) {
+		generator.generateFlatItem(IcyIncitement.BUZZSAW, ModelTemplates.FLAT_HANDHELD_ITEM);
+	}
+
+	@Override
+	protected void generateDamageTypes(MDamageTypeProvider provider, HolderLookup.Provider registries, FabricDynamicRegistryProvider.@NotNull Entries entries) {
+		entries.add(IcyIncitement.BUZZSAWED, new DamageType("buzzsawed", 0.1F));
+	}
+
+	@Override
+	protected void generateDamageTypeTags(@NonNull MDamageTypeTagProvider provider, HolderLookup.Provider arg) {
+		provider.builder(DamageTypeTags.BYPASSES_SHIELD)
+				.addOptional(IcyIncitement.BUZZSAWED);
+		provider.builder(DamageTypeTags.BYPASSES_COOLDOWN)
+				.addOptional(IcyIncitement.BUZZSAWED);
+		provider.builder(DamageTypeTags.NO_IMPACT)
+				.addOptional(IcyIncitement.BUZZSAWED);
+		provider.builder(DamageTypeTags.NO_KNOCKBACK)
+				.addOptional(IcyIncitement.BUZZSAWED);
+		provider.builder(DamageTypeTags.CAN_BREAK_ARMOR_STAND)
+				.addOptional(IcyIncitement.BUZZSAWED);
+		provider.builder(DamageTypeTags.IS_PLAYER_ATTACK)
+				.addOptional(IcyIncitement.BUZZSAWED);
 	}
 
 	protected @Override void generateAdvancements(MAdvancementProvider provider, HolderLookup.Provider registryLookup, Consumer<AdvancementHolder> consumer) {

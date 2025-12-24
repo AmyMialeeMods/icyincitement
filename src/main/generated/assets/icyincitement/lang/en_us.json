@@ -1,6 +1,7 @@
 {
   "advancements.icyincitement.description": "Fill an Empty Sprinkler with a real snow production source",
   "advancements.icyincitement.title": "Icy Incitement",
+  "item.icyincitement.buzzsaw": "Buzzsaw",
   "item.icyincitement.empty_sprinkler": "Empty Sprinkler",
   "item.icyincitement.snowball_sprinkler": "Snowball Sprinkler",
   "mvalue.icyincitement.horizontal_recoil": "Horizontal Recoil",
@@ -8,7 +9,7 @@
   "mvalue.icyincitement.max_snowballs": "Max Snowballs",
   "mvalue.icyincitement.max_snowballs.desc": "The maximum number of snowballs the Snowball Sprinkler can hold",
   "mvalue.icyincitement.recharge_rate": "Recharge Rate",
-  "mvalue.icyincitement.recharge_rate.desc": "The rate at which the Snowball Sprinkler recharges snowballs per tick\nAt a rate of 1, the meter will never go down",
+  "mvalue.icyincitement.recharge_rate.desc": "The rate at which the Snowball Sprinkler recharges snowballs per tick\nAt a rate of 1, the meter will recharge instantly",
   "mvalue.icyincitement.snow_divergence": "Snow Divergence",
   "mvalue.icyincitement.snow_divergence.desc": "How much spread do the shots fired by the Snowball Sprinkler have",
   "mvalue.icyincitement.snow_velocity": "Snow Velocity",

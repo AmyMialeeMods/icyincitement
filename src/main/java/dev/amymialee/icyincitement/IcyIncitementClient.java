@@ -2,9 +2,11 @@ package dev.amymialee.icyincitement;
 
 import com.mojang.serialization.MapCodec;
 import dev.amymialee.icyincitement.cca.SnowComponent;
+import dev.amymialee.icyincitement.util.BuzzsawVFXClient;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.item.properties.numeric.RangeSelectItemModelProperties;
 import net.minecraft.client.renderer.item.properties.numeric.RangeSelectItemModelProperty;
@@ -16,6 +18,7 @@ import org.jspecify.annotations.NonNull;
 
 public class IcyIncitementClient implements ClientModInitializer {
 	public @Override void onInitializeClient() {
+		ClientTickEvents.END_CLIENT_TICK.register(BuzzsawVFXClient::tick);
 		RangeSelectItemModelProperties.ID_MAPPER.put(IcyIncitement.id("charge"), SnowProperty.CODEC);
 	}
 

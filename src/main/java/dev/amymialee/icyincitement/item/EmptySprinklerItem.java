@@ -39,4 +39,9 @@ public class EmptySprinklerItem extends Item {
         }
         return super.interactLivingEntity(stack, user, entity, hand);
     }
+
+    @Override
+    public int mialib$getNameColor(ItemStack stack) {
+        return 0xFF9999FF;
+    }
 }
