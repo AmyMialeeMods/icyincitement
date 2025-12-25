@@ -1,11 +1,14 @@
 package dev.amymialee.icyincitement.item;
 
-import dev.amymialee.icyincitement.IcyIncitement;
 import dev.amymialee.icyincitement.cca.BuzzsawComponent;
+import dev.amymialee.icyincitement.entities.SawbladeEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.CommonColors;
 import net.minecraft.world.InteractionHand;
@@ -37,6 +40,22 @@ public class BuzzsawItem extends Item {
                 .component(DataComponents.SWING_ANIMATION, new SwingAnimation(SwingAnimationType.NONE, 0))
                 .component(DataComponents.USE_EFFECTS, new UseEffects(true, true, 1.0F))
                 .component(DataComponents.WEAPON, new Weapon(0, 2f)));
+    }
+
+    @Override
+    public boolean releaseUsing(@NonNull ItemStack stack, @NonNull Level world, @NonNull LivingEntity user, int remainingUseTicks) {
+        if (!(user instanceof ServerPlayer player)) return false;
+        var component = BuzzsawComponent.KEY.get(player);
+        if (component.getSpeed() > 0.5f) {
+            var ball = new SawbladeEntity(world, player);
+            ball.setPos(user.position().add(0, user.getBbHeight() / 1.6, 0));
+            ball.setDeltaMovement(user.getLookAngle().add(0, 0.15, 0).scale(1.5));
+            ball.setOwner(user);
+            world.addFreshEntity(ball);
+            world.playSound(null, player, SoundEvents.TRIDENT_THROW.value(), SoundSource.PLAYERS, 1.2F, 0.85f + 0.3f * user.getRandom().nextFloat());
+            component.setSpeed(0f);
+        }
+        return false;
     }
 
     @Override

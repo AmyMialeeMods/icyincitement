@@ -1,7 +1,7 @@
 package dev.amymialee.icyincitement.mixin;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import dev.amymialee.icyincitement.util.BuzzsawVFXClient;
+import dev.amymialee.icyincitement.client.BuzzsawVFXClient;
 import it.unimi.dsi.fastutil.longs.Long2ObjectMap;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;

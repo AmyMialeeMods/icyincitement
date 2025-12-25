@@ -1,4 +1,4 @@
-package dev.amymialee.icyincitement.util;
+package dev.amymialee.icyincitement.client;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import dev.amymialee.icyincitement.cca.BuzzsawComponent;

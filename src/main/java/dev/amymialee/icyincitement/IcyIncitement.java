@@ -2,6 +2,7 @@ package dev.amymialee.icyincitement;
 
 import dev.amymialee.icyincitement.cca.BuzzsawComponent;
 import dev.amymialee.icyincitement.cca.SnowComponent;
+import dev.amymialee.icyincitement.entities.SawbladeEntity;
 import dev.amymialee.icyincitement.item.BuzzsawItem;
 import dev.amymialee.icyincitement.item.EmptySprinklerItem;
 import dev.amymialee.icyincitement.item.SnowballSprinklerItem;
@@ -15,6 +16,8 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.damagesource.DamageType;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
@@ -41,6 +44,8 @@ public class IcyIncitement implements ModInitializer, EntityComponentInitializer
 	public static final Item SNOWBALL_SPRINKLER = REGISTRY.register("snowball_sprinkler", new Item.Properties().component(DataComponents.USE_EFFECTS, new UseEffects(true, true, 1f)).rarity(Rarity.EPIC).stacksTo(1), SnowballSprinklerItem::new, CreativeModeTabs.COMBAT);
 	public static final Item BUZZSAW = REGISTRY.register("buzzsaw", new Item.Properties().component(DataComponents.USE_EFFECTS, new UseEffects(true, true, 1f)).rarity(Rarity.EPIC).fireResistant().stacksTo(1), BuzzsawItem::new, CreativeModeTabs.COMBAT);
 
+	public static final EntityType<SawbladeEntity> SAWBLADE = REGISTRY.register("sawblade", EntityType.Builder.<SawbladeEntity>of(SawbladeEntity::new, MobCategory.MISC).sized(0.6f, 0.6f).clientTrackingRange(12).noSave().updateInterval(1));
+
 	public static final ResourceKey<DamageType> BUZZSAWED = ResourceKey.create(Registries.DAMAGE_TYPE, id("buzzsawed"));
 
 	public static final MValueCategory CATEGORY = new MValueCategory(id(MOD_ID), SNOWBALL_SPRINKLER, Identifier.withDefaultNamespace("textures/block/ice.png"), 16, 16);
@@ -61,7 +66,6 @@ public class IcyIncitement implements ModInitializer, EntityComponentInitializer
 	// remember what the enchants are supposed to be
 	// make the enchants
 	// make the right click as a whole
-	
 
 	public @Override void onInitialize() {
 		Set<BlockPos> treeTargets = new HashSet<>();
