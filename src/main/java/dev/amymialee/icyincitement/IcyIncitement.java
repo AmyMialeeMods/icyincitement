@@ -66,6 +66,9 @@ public class IcyIncitement implements ModInitializer, EntityComponentInitializer
 	// remember what the enchants are supposed to be
 	// make the enchants
 	// make the right click as a whole
+	// if holding left click then dont fire the projectile
+	// if releasing right click fire it (if no left)
+	// so its easier to choose
 
 	public @Override void onInitialize() {
 		Set<BlockPos> treeTargets = new HashSet<>();

@@ -21,7 +21,7 @@ This lets you jump very high or keep back crowds of mobs.
         <th><b>Join my Discord</b></th>
         <th><b>Find the mod on Curseforge!</b></th>
         <th><b>Find the mod on Modrinth!</b></th>
-        <th><b>Support me on Ko-fi!</b></th>
+        <th><b>Support me on Patreon!</b></th>
     </tr>
     <tr>
         <th>

@@ -31,7 +31,6 @@ public class SawbladeRenderer extends EntityRenderer<SawbladeEntity, SawbladeRen
                     vertexConsumer.addVertex(pose, (float) sawblade.x, (float) sawblade.y, (float) sawblade.z).setUv(0, 1);
                     vertexConsumer.addVertex(pose, (float) sawblade.x, (float) sawblade.y, (float) sawblade.z).setUv(0, 1);
                     vertexConsumer.addVertex(pose, (float) sawblade.x, (float) sawblade.y, (float) sawblade.z).setUv(0, 1);
-                    vertexConsumer.addVertex(pose, (float) sawblade.x, (float) sawblade.y, (float) sawblade.z).setUv(0, 1);
                 }
         );
         poseStack.popPose();
