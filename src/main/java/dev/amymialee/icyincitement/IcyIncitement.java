@@ -42,7 +42,7 @@ public class IcyIncitement implements ModInitializer, EntityComponentInitializer
 
 	public static final Item EMPTY_SPRINKLER = REGISTRY.register("empty_sprinkler", new Item.Properties().stacksTo(1), EmptySprinklerItem::new, CreativeModeTabs.COMBAT);
 	public static final Item SNOWBALL_SPRINKLER = REGISTRY.register("snowball_sprinkler", new Item.Properties().component(DataComponents.USE_EFFECTS, new UseEffects(true, true, 1f)).rarity(Rarity.EPIC).stacksTo(1), SnowballSprinklerItem::new, CreativeModeTabs.COMBAT);
-	public static final Item BUZZSAW = REGISTRY.register("buzzsaw", new Item.Properties().component(DataComponents.USE_EFFECTS, new UseEffects(true, true, 1f)).rarity(Rarity.EPIC).fireResistant().stacksTo(1), BuzzsawItem::new, CreativeModeTabs.COMBAT);
+	public static final Item BUZZSAW = REGISTRY.register("buzzsaw", new Item.Properties().component(DataComponents.USE_EFFECTS, new UseEffects(true, true, 1f)).rarity(Rarity.EPIC).fireResistant().stacksTo(1), BuzzsawItem::new);
 
 	public static final EntityType<SawbladeEntity> SAWBLADE = REGISTRY.register("sawblade", EntityType.Builder.<SawbladeEntity>of(SawbladeEntity::new, MobCategory.MISC).sized(0.6f, 0.6f).clientTrackingRange(12).noSave().updateInterval(1));
 
@@ -73,7 +73,7 @@ public class IcyIncitement implements ModInitializer, EntityComponentInitializer
 	public @Override void onInitialize() {
 		Set<BlockPos> treeTargets = new HashSet<>();
 		PlayerBlockBreakEvents.BEFORE.register((world, player, pos, state, entity) -> {
-			if (player.getMainHandItem().is(BUZZSAW) && state.is(BlockTags.LOGS)) {
+			if (player.getComponent(BuzzsawComponent.KEY).shouldLumberjack() && state.is(BlockTags.LOGS)) {
 				BuzzsawComponent.fillTargetSet(world, pos, treeTargets);
 			} else {
 				treeTargets.clear();
@@ -82,7 +82,7 @@ public class IcyIncitement implements ModInitializer, EntityComponentInitializer
 		});
 		PlayerBlockBreakEvents.AFTER.register((level, player, pos, state, entity) -> {
 			var stack = player.getMainHandItem();
-			if (!(stack.is(BUZZSAW))) return;
+			if (!player.getComponent(BuzzsawComponent.KEY).shouldLumberjack()) return;
 			for (var target : treeTargets) {
 				var blockState = level.getBlockState(target);
 				if (blockState.is(BlockTags.LOGS)) {
