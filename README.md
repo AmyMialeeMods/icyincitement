@@ -7,7 +7,7 @@
   <a href="https://modrinth.com/mod/icyincitement"><img src="https://img.shields.io/badge/Modrinth-16181C?style=for-the-badge&logo=modrinth&logoColor=17B85A" alt="Modrinth Badge"/></a>
   <a href="https://bsky.app/profile/amymialee.xyz"><img src="https://img.shields.io/badge/BSky-16181C?style=for-the-badge&logo=bluesky&logoColor=blue" alt="BlueSky Badge"/></a>
   <a href="https://twitter.com/amy_mialee"><img src="https://img.shields.io/badge/Twitter-16181C?style=for-the-badge&logo=x&logoColor=blue" alt="Twitter Badge"/></a>
-</div></p>
+</div>
 
 Icy Incitement is a mod which adds winter themed tools to Minecraft.<br>
 Craft a Snowball Sprinkler with a few diamonds and some iron, and fill it with a snow golem to gain a unique new tool.<br>
