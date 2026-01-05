@@ -20,7 +20,8 @@
       <img src="https://img.shields.io/badge/Twitter-16181C?style=for-the-badge&logo=x&logoColor=blue" alt="Twitter Badge"/>
     </a>
   </div>
-</div><br>
+</div>
+
 Icy Incitement is a mod which adds winter themed tools to Minecraft.<br>
 Craft a Snowball Sprinkler with a few diamonds and some iron, and fill it with a snow golem to gain a unique new tool.<br>
 This mod was made for MMD WinterJam 2021.<br>
