@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(AvatarRenderer.class)
 public class AvatarRendererMixin {
     @Inject(method = "getArmPose(Lnet/minecraft/world/entity/Avatar;Lnet/minecraft/world/entity/HumanoidArm;)Lnet/minecraft/client/model/HumanoidModel$ArmPose;", at = @At("HEAD"), cancellable = true)
-    private static void icyincitement$buzzsaw(@NonNull Avatar avatar, HumanoidArm hand, CallbackInfoReturnable<HumanoidModel.ArmPose> cir) {
+    private static void icyincitement$buzzsaw(@NonNull Avatar avatar, HumanoidArm humanoidArm, CallbackInfoReturnable<HumanoidModel.ArmPose> cir) {
         if (avatar.getActiveItem().is(IcyIncitement.BUZZSAW)) cir.setReturnValue(HumanoidModel.ArmPose.BOW_AND_ARROW);
     }
 }
